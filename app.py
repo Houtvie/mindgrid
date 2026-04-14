@@ -209,10 +209,10 @@ if not st.session_state.started:
     c1, c2 = st.columns(2)
     with c1:
         st.markdown('<div class="sec-lbl">Your Symbol</div>', unsafe_allow_html=True)
-        sym = st.radio("Your Symbol", ["X — go first","O — go second","Random"], label_visibility="collapsed", key="radio_sym")
+        sym = st.radio("Your Symbol", ["X — go first","O — go second","Random"], label_visibility="hidden", key="radio_sym")
     with c2:
         st.markdown('<div class="sec-lbl">Difficulty</div>', unsafe_allow_html=True)
-        diff = st.radio("Difficulty", ["Easy","Hard"], label_visibility="collapsed", key="radio_diff")
+        diff = st.radio("Difficulty", ["Easy","Hard"], label_visibility="hidden", key="radio_diff")
 
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("▶  BEGIN MATCH"):
