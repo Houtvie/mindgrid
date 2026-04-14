@@ -209,13 +209,15 @@ if not st.session_state.started:
     c1, c2 = st.columns(2)
     with c1:
         st.markdown('<div class="sec-lbl">Your Symbol</div>', unsafe_allow_html=True)
-        sym = st.radio("sym", ["X — go first","O — go second","Random"], label_visibility="collapsed")
+        sym = st.radio("Your Symbol", ["X — go first","O — go second","Random"], label_visibility="collapsed", key="radio_sym")
     with c2:
         st.markdown('<div class="sec-lbl">Difficulty</div>', unsafe_allow_html=True)
-        diff = st.radio("diff", ["Easy","Hard"], label_visibility="collapsed")
+        diff = st.radio("Difficulty", ["Easy","Hard"], label_visibility="collapsed", key="radio_diff")
 
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("▶  BEGIN MATCH"):
+        sym  = st.session_state.get("radio_sym",  "X — go first")
+        diff = st.session_state.get("radio_diff", "Hard")
         if "X" in sym:
             p, a = "X", "O"
         elif "O" in sym:
@@ -271,7 +273,7 @@ else:
             idx = row*3 + col
             val = board[idx]
             with cols[col]:
-                lbl      = val if val else "·"
+                lbl      = val if val else " "
                 disabled = bool(val) or st.session_state.over or st.session_state.turn=="ai"
                 if st.button(lbl, key=f"c{idx}", disabled=disabled, use_container_width=True):
                     board[idx] = p
